@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../../lib/router-compat';
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -45,9 +45,9 @@ const Welcome = () => {
           };
 
           const [schRes, ongRes, popRes] = await Promise.all([
-            fetch('/api/v1/schedule').then(r => r.json()),
-            fetch('/api/v1/ongoing').then(r => r.json()),
-            fetch('/api/v1/popular').then(r => r.json())
+            fetch('/api/public/v1/schedule').then(r => r.json()),
+            fetch('/api/public/v1/ongoing').then(r => r.json()),
+            fetch('/api/public/v1/popular').then(r => r.json())
           ]);
 
           const schData = schRes.data || {};
@@ -99,7 +99,7 @@ const Welcome = () => {
     const timer = setTimeout(async () => {
       setIsLiveLoading(true);
       try {
-        const res = await fetch(`/api/v1/search?q=${encodeURIComponent(searchQuery)}`).then(r => r.json());
+        const res = await fetch(`/api/public/v1/search?q=${encodeURIComponent(searchQuery)}`).then(r => r.json());
         if (isMounted) setLiveResults(res.data ||[]);
       } catch (e) { 
         if (isMounted) setLiveResults([]); 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { saveHistoryItem, getHistory } from '../utils/historyManager';
-import { isFavorite, saveFavorite, removeFavorite } from '../utils/favoritesManager';
+import { useParams, useNavigate, useLocation } from '../../lib/router-compat';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
+import { saveHistoryItem, getHistory } from '../../utils/historyManager';
+import { isFavorite, saveFavorite, removeFavorite } from '../../utils/favoritesManager';
 
 const ShimmerEffect = () => (
   <div className="absolute top-0 bottom-0 left-0 w-[150%] animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent z-10" style={{ transform: 'translate3d(-100%, 0, 0) skewX(-20deg)' }} />
@@ -215,7 +215,7 @@ const Watch = () => {
         setIsLoading(true);
       }
       try {
-        const res = await fetch(`/api/v1/detail?id=${id}`).then(r => r.json());
+        const res = await fetch(`/api/public/v1/detail?id=${id}`).then(r => r.json());
         if (res.status && res.data) {
           setAnime(res.data);
           setEpisodes(res.data.episode_list || []);
@@ -237,7 +237,7 @@ const Watch = () => {
           updateMetaTags(shareTitle, shareDesc, shareImg);
         }
         
-        const recRes = await fetch('/api/v1/popular?page=1').then(r => r.json());
+        const recRes = await fetch('/api/public/v1/popular?page=1').then(r => r.json());
         if (recRes.status && recRes.data) {
           setRecommendations(recRes.data.slice(0, 5));
         }
@@ -279,7 +279,7 @@ const Watch = () => {
       setProgress(0);
       setCurrentTime(0);
       try {
-        const res = await fetch(`/api/v1/episode?id=${currentEpId}`).then(r => r.json());
+        const res = await fetch(`/api/public/v1/episode?id=${currentEpId}`).then(r => r.json());
         if (res.status && res.data) {
           // 1. First choice: direct .mp4 links
           let targetServers = (res.data.server || []).filter(s => s.link && s.type === 'direct' && !s.link.includes('embed=true') && s.link.split('?')[0].endsWith('.mp4'));

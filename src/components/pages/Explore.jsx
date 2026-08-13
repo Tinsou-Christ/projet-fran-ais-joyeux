@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { useSearchParams, useNavigate } from '../../lib/router-compat';
+import Navbar from '../Navbar';
 
 const Shimmer = () => <div className="absolute top-0 bottom-0 left-0 w-[150%] animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent z-10" style={{ transform: 'translate3d(-100%, 0, 0) skewX(-20deg)' }} />;
 
@@ -103,7 +103,7 @@ const Explore = () => {
       return;
     }
     
-    fetch('/api/v1/genre')
+    fetch('/api/public/v1/genre')
       .then(r => r.json())
       .then(d => { 
         if (isMounted) {
@@ -136,12 +136,12 @@ const Explore = () => {
 
       setIsLoading(true);
       try {
-        let url = `/api/v1/popular?page=${page}`;
+        let url = `/api/public/v1/popular?page=${page}`;
         if (query) {
-          url = `/api/v1/search?q=${encodeURIComponent(query)}&page=${page}`;
+          url = `/api/public/v1/search?q=${encodeURIComponent(query)}&page=${page}`;
         } else if (selectedGenres.length > 0) {
           const genreQuery = selectedGenres.map(id => `id=${id}`).join('&');
-          url = `/api/v1/genre?${genreQuery}&page=${page}`;
+          url = `/api/public/v1/genre?${genreQuery}&page=${page}`;
         }
         
         const res = await fetch(url).then(r => r.json());

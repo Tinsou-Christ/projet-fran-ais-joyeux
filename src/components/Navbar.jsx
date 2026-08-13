@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from '../lib/router-compat';
 import { supabase } from '../utils/supabaseClient';
 import { isFavorite, saveFavorite, removeFavorite } from '../utils/favoritesManager';
 import { getHistory } from '../utils/historyManager';
@@ -288,7 +288,7 @@ const Navbar = () => {
       if (searchQuery.length > 2) {
         setIsLiveLoading(true);
         try {
-          const res = await fetch(`/api/v1/search?q=${encodeURIComponent(searchQuery)}`).then(r => r.json());
+          const res = await fetch(`/api/public/v1/search?q=${encodeURIComponent(searchQuery)}`).then(r => r.json());
           setLiveResults(res.data || []);
         } catch (e) {
           setLiveResults([]);

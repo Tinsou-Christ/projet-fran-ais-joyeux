@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { useNavigate } from '../../lib/router-compat';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 const Shimmer = () => (
   <div className="absolute top-0 bottom-0 left-0 w-[150%] animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent z-10" style={{ transform: 'translate3d(-100%, 0, 0) skewX(-20deg)' }} />
@@ -86,9 +86,9 @@ const Home = () => {
       }
       try {
         const [schRes, ongRes, popRes] = await Promise.all([
-          fetch('/api/v1/schedule').then(r => r.json()),
-          fetch('/api/v1/ongoing').then(r => r.json()),
-          fetch('/api/v1/popular').then(r => r.json())
+          fetch('/api/public/v1/schedule').then(r => r.json()),
+          fetch('/api/public/v1/ongoing').then(r => r.json()),
+          fetch('/api/public/v1/popular').then(r => r.json())
         ]);
         if (!isMounted) return;
         

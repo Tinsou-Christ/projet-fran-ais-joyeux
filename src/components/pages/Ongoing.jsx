@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { useNavigate } from '../../lib/router-compat';
+import Navbar from '../Navbar';
 
 const Shimmer = () => <div className="absolute top-0 bottom-0 left-0 w-[150%] animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent z-10" style={{ transform: 'translate3d(-100%, 0, 0) skewX(-20deg)' }} />;
 
@@ -55,7 +55,7 @@ const Ongoing = () => {
     const fetchPage = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch(`/api/v1/ongoing?page=0`).then(r => r.json());
+        const res = await fetch(`/api/public/v1/ongoing?page=0`).then(r => r.json());
         if (isMounted) {
           const fetchedData = res.data || [];
           setResults(fetchedData);

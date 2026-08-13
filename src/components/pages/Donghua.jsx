@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { useSearchParams } from '../../lib/router-compat';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
 const API_BASE = 'https://anichin.cafe';
 
