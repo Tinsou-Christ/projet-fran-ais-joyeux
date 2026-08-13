@@ -204,7 +204,7 @@ export default function Manga() {
         window.__NEFUSOFT_MANGA_CACHE__ = compiled;
         setCachedData('nefusoft_manga_home_cache', compiled);
       } catch (e) {
-        console.error('Failed to load Manga Home data', e);
+        console.error('Échec du chargement des données de la page d\'accueil Manga', e);
       } finally {
         setIsHomeLoading(false);
       }
@@ -253,7 +253,7 @@ export default function Manga() {
       setBrowseTotalPages(meta.lastPage || 1);
       setBrowsePage(page);
     } catch (e) {
-      console.error('Failed to fetch browse/search results', e);
+      console.error('Échec de la récupération des résultats de recherche', e);
     } finally {
       setIsBrowseLoading(false);
     }
@@ -298,7 +298,7 @@ export default function Manga() {
           }
           setChaptersData(parsedChapters);
         } catch (e) {
-          console.error('Failed to fetch series details', e);
+          console.error('Échec de la récupération des détails de la série', e);
           setChaptersData([]);
         } finally {
           setIsDetailsLoading(false);
@@ -319,7 +319,7 @@ export default function Manga() {
           setReaderData(res?.data || null);
           window.scrollTo(0, 0);
         } catch (e) {
-          console.error('Failed to load chapter reader', e);
+          console.error('Échec du chargement du lecteur de chapitre', e);
         } finally {
           setIsReaderLoading(false);
         }
@@ -417,7 +417,7 @@ export default function Manga() {
                           onClick={() => setMangaView('details', { slug: activeBanner.slug })}
                           className="h-8 md:h-10 px-5 md:px-6 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded-lg font-black tracking-wider text-[10px] md:text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_4px_14px_rgba(246,207,128,0.3)] hover:scale-102 cursor-pointer"
                         >
-                          <span className="leading-none">Baca Sekarang</span>
+                          <span className="leading-none">Lire maintenant</span>
                         </button>
                       </div>
                     </div>
@@ -438,15 +438,15 @@ export default function Manga() {
             <div className="flex items-center gap-3">
               <span className="bg-white/5 p-2 rounded-xl border border-white/10">📚</span>
               <div>
-                <h3 className="text-white font-black text-sm uppercase tracking-wide">Jelajahi Ribuan Komik</h3>
-                <p className="text-white/40 text-[10px] md:text-xs font-bold">Cari Manhwa, Manhua, atau Manga favoritmu disini!</p>
+                <h3 className="text-white font-black text-sm uppercase tracking-wide">Explorez des milliers de comics</h3>
+                <p className="text-white/40 text-[10px] md:text-xs font-bold">Recherchez vos Manhwa, Manhua ou Manga préférés ici !</p>
               </div>
             </div>
             <button
               onClick={() => setMangaView('browse')}
               className="bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-xl text-xs font-black text-[#F6CF80] transition-all cursor-pointer flex items-center gap-1.5"
             >
-              🔍 Cari Komik
+              🔍 Rechercher un comic
             </button>
           </div>
 
@@ -532,16 +532,16 @@ export default function Manga() {
                     ⚠️
                   </div>
                   <div className="text-center animate-[fadeIn_0.5s_ease-out_0.2s_both]">
-                    <h3 className="text-white font-black text-sm tracking-wide">Gagal Memuat Komik</h3>
+                    <h3 className="text-white font-black text-sm tracking-wide">Échec du chargement des comics</h3>
                     <p className="text-white/50 text-[11px] font-bold mt-1 leading-relaxed">
-                      Terjadi gangguan koneksi, limit server, atau data gagal diambil dari Komikcast API. Silakan coba lagi.
+                      Une erreur de connexion, une limite serveur ou un échec de récupération des données depuis l'API Komikcast est survenue. Veuillez réessayer.
                     </p>
                   </div>
                   <button
                     onClick={() => setRetryTrigger(prev => prev + 1)}
                     className="w-full h-10 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded-xl font-black tracking-wider text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_4px_12px_rgba(246,207,128,0.2)] active:scale-95"
                   >
-                    🔄 Coba Lagi
+                    🔄 Réessayer
                   </button>
                 </div>
               );
@@ -549,21 +549,21 @@ export default function Manga() {
 
             return (
               <>
-                {renderSlider('Populer Sekarang', 'Rekomendasi komik terpopuler minggu ini', popular)}
-                {renderSlider('Komik Terbaru', 'Update rilis chapter paling fresh', latest)}
-                {renderSlider('Trending Hari Ini', 'Komik dengan pembaca terbanyak saat ini', trending)}
-                {renderSlider('Rekomendasi Untukmu', 'Pilihan terbaik tim editor NefuManga', recommendations)}
-                {renderSlider('Paling Banyak Disimpan', 'Komik dengan jumlah bookmark terbanyak', mostBookmarked)}
-                {renderSlider('Paling Banyak Dibaca', 'Berdasarkan statistik total tayangan', mostRead)}
-                {renderSlider('Top Manhwa (Korea)', 'Koleksi komik Korea terbaik', topManhwa)}
-                {renderSlider('Top Manhua (China)', 'Koleksi komik Mandarin terbaik', topManhua)}
-                {renderSlider('Top Manga (Jepang)', 'Koleksi komik Jepang klasik & modern', topManga)}
-                {renderSlider('Adaptasi Anime', 'Komik seru yang sudah diadaptasi menjadi anime', topAnime)}
+                {renderSlider('Populaire actuellement', 'Recommandations des comics les plus populaires cette semaine', popular)}
+                {renderSlider('Derniers comics', 'Les derniers chapitres tout juste sortis', latest)}
+                {renderSlider('Tendance du jour', 'Comics avec le plus de lecteurs actuellement', trending)}
+                {renderSlider('Recommandé pour vous', 'Meilleure sélection de l\'équipe éditoriale NefuManga', recommendations)}
+                {renderSlider('Les plus enregistrés', 'Comics avec le plus de favoris', mostBookmarked)}
+                {renderSlider('Les plus lus', 'Basé sur les statistiques totales de vues', mostRead)}
+                {renderSlider('Top Manhwa (Corée)', 'Meilleure collection de comics coréens', topManhwa)}
+                {renderSlider('Top Manhua (Chine)', 'Meilleure collection de comics chinois', topManhua)}
+                {renderSlider('Top Manga (Japon)', 'Collection de comics japonais classiques et modernes', topManga)}
+                {renderSlider('Adaptations en anime', 'Comics passionnants déjà adaptés en anime', topAnime)}
 
                 {/* Genres Grid */}
                 {genres.length > 0 && (
                   <section className="mb-10 bg-[#16161a]/20 border border-white/5 rounded-3xl p-6 backdrop-blur-xl lazy-section">
-                    <h2 className="text-base md:text-lg font-black text-white uppercase tracking-tight mb-4">Temukan Berdasarkan Genre</h2>
+                    <h2 className="text-base md:text-lg font-black text-white uppercase tracking-tight mb-4">Découvrir par genre</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
                       {genres.map((g) => (
                         <button
@@ -594,21 +594,21 @@ export default function Manga() {
             {/* Left Sidebar Filters */}
             <div className="w-full lg:w-64 shrink-0 flex flex-col gap-4">
               <div className="bg-[#16161a] border border-white/5 rounded-2xl p-5 flex flex-col gap-4">
-                <h3 className="text-white font-black text-xs uppercase tracking-wide border-b border-white/5 pb-2">Filter Pencarian</h3>
+                <h3 className="text-white font-black text-xs uppercase tracking-wide border-b border-white/5 pb-2">Filtres de recherche</h3>
 
                 {/* Search Form */}
                 <form onSubmit={handleSearchSubmit} className="flex flex-col gap-2">
-                  <label className="text-white/40 text-[9px] font-black uppercase">Kata Kunci</label>
+                  <label className="text-white/40 text-[9px] font-black uppercase">Mot-clé</label>
                   <div className="flex gap-2">
                     <input
                       type="text"
-                      placeholder="Cari judul..."
+                      placeholder="Rechercher un titre..."
                       className="bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-white outline-none focus:border-[#F6CF80] flex-1"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <button type="submit" className="bg-[#F6CF80] text-black px-3 py-2 rounded-xl text-xs font-black hover:opacity-90 cursor-pointer">
-                      Cari
+                      Rechercher
                     </button>
                   </div>
                 </form>
@@ -621,7 +621,7 @@ export default function Manga() {
                     value={selectedGenre}
                     onChange={(e) => setSelectedGenre(e.target.value)}
                   >
-                    <option value="">Semua Genre</option>
+                    <option value="">Tous les genres</option>
                     {genres.map(g => (
                       <option key={g.id} value={g.id}>{g.data?.name || g.name}</option>
                     ))}
@@ -630,13 +630,13 @@ export default function Manga() {
 
                 {/* Format Selector */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-white/40 text-[9px] font-black uppercase">Format / Jenis</label>
+                  <label className="text-white/40 text-[9px] font-black uppercase">Format / Type</label>
                   <select
                     className="bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-white/80 outline-none focus:border-[#F6CF80]"
                     value={selectedFormat}
                     onChange={(e) => setSelectedFormat(e.target.value)}
                   >
-                    <option value="">Semua</option>
+                    <option value="">Tous</option>
                     <option value="manga">Manga</option>
                     <option value="manhwa">Manhwa</option>
                     <option value="manhua">Manhua</option>
@@ -645,28 +645,28 @@ export default function Manga() {
 
                 {/* Sort Type */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-white/40 text-[9px] font-black uppercase">Urutkan</label>
+                  <label className="text-white/40 text-[9px] font-black uppercase">Trier par</label>
                   <select
                     className="bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-white/80 outline-none focus:border-[#F6CF80]"
                     value={sortType}
                     onChange={(e) => setSortType(e.target.value)}
                   >
-                    <option value="latest">Terbaru</option>
-                    <option value="popular">Terpopuler</option>
+                    <option value="latest">Plus récent</option>
+                    <option value="popular">Plus populaire</option>
                     <option value="trending">Trending</option>
                   </select>
                 </div>
 
                 {/* Sort Order */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-white/40 text-[9px] font-black uppercase">Arah Urutan</label>
+                  <label className="text-white/40 text-[9px] font-black uppercase">Ordre de tri</label>
                   <select
                     className="bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-white/80 outline-none focus:border-[#F6CF80]"
                     value={sortOrder}
                     onChange={(e) => setSortOrder(e.target.value)}
                   >
-                    <option value="desc">Terbesar - Terkecil</option>
-                    <option value="asc">Terkecil - Terbesar</option>
+                    <option value="desc">Décroissant</option>
+                    <option value="asc">Croissant</option>
                   </select>
                 </div>
 
@@ -681,14 +681,14 @@ export default function Manga() {
                   }}
                   className="bg-white/5 hover:bg-white/10 border border-white/5 py-2.5 rounded-xl text-xs font-bold text-white transition-all cursor-pointer text-center"
                 >
-                  Reset Filter
+                  Réinitialiser les filtres
                 </button>
 
                 <button
                   onClick={() => setMangaView('home')}
                   className="bg-white/5 hover:bg-[#F6CF80] hover:text-black border border-white/5 py-2.5 rounded-xl text-xs font-bold text-white transition-all cursor-pointer text-center"
                 >
-                  Kembali ke Dashboard
+                  Retour au tableau de bord
                 </button>
               </div>
             </div>
@@ -696,8 +696,8 @@ export default function Manga() {
             {/* Right Main Grid */}
             <div className="flex-1 flex flex-col gap-6">
               <div className="flex justify-between items-center bg-[#16161a] border border-white/5 px-5 py-4 rounded-2xl">
-                <span className="text-white font-black text-xs uppercase tracking-wider">Hasil Jelajah</span>
-                <span className="text-white/40 text-[10px] font-bold">Halaman {browsePage} dari {browseTotalPages}</span>
+                <span className="text-white font-black text-xs uppercase tracking-wider">Résultats de recherche</span>
+                <span className="text-white/40 text-[10px] font-bold">Page {browsePage} sur {browseTotalPages}</span>
               </div>
 
               {isBrowseLoading ? (
@@ -741,7 +741,7 @@ export default function Manga() {
                 </div>
               ) : (
                 <div className="text-center py-20 text-white/30 text-xs font-bold bg-[#16161a]/20 border border-white/5 rounded-3xl">
-                  Komik tidak ditemukan dengan filter di atas.
+                  Aucun comic trouvé avec ces filtres.
                 </div>
               )}
 
@@ -753,7 +753,7 @@ export default function Manga() {
                     onClick={() => fetchBrowseResults(browsePage - 1)}
                     className="bg-white/5 hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer"
                   >
-                    Sebelumnya
+                    Précédent
                   </button>
                   <span className="text-[#F6CF80] font-black text-xs">{browsePage} / {browseTotalPages}</span>
                   <button
@@ -761,7 +761,7 @@ export default function Manga() {
                     onClick={() => fetchBrowseResults(browsePage + 1)}
                     className="bg-white/5 hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer"
                   >
-                    Selanjutnya
+                    Suivant
                   </button>
                 </div>
               )}
@@ -830,16 +830,16 @@ export default function Manga() {
 
                     <div className="flex flex-col gap-1 text-xs text-white/60">
                       {finalDetails.author && (
-                        <p><span className="font-bold text-white/40 uppercase text-[9px] tracking-wider mr-2">Penulis:</span> {finalDetails.author}</p>
+                        <p><span className="font-bold text-white/40 uppercase text-[9px] tracking-wider mr-2">Auteur :</span> {finalDetails.author}</p>
                       )}
                       {finalDetails.releaseDate && (
-                        <p><span className="font-bold text-white/40 uppercase text-[9px] tracking-wider mr-2">Tahun Rilis:</span> {finalDetails.releaseDate}</p>
+                        <p><span className="font-bold text-white/40 uppercase text-[9px] tracking-wider mr-2">Année de sortie :</span> {finalDetails.releaseDate}</p>
                       )}
                     </div>
 
                     {finalDetails.synopsis && (
                       <div className="bg-black/30 border border-white/5 rounded-2xl p-4 mt-2">
-                        <span className="font-black text-white/40 uppercase text-[9px] tracking-wider block mb-1">Sinopsis</span>
+                        <span className="font-black text-white/40 uppercase text-[9px] tracking-wider block mb-1">Synopsis</span>
                         <p className="text-[11px] md:text-xs text-white/70 leading-relaxed max-h-40 overflow-y-auto custom-scrollbar pr-1">
                           {finalDetails.synopsis}
                         </p>
@@ -866,11 +866,11 @@ export default function Manga() {
                 <div className="bg-[#16161a] border border-white/5 rounded-3xl p-6 md:p-8 flex flex-col gap-4 shadow-2xl">
                   <div className="flex flex-col md:flex-row justify-between md:items-center gap-3 border-b border-white/5 pb-4">
                     <h2 className="text-white font-black text-sm uppercase tracking-wider flex items-center gap-2">
-                      📖 Daftar Chapter ({chaptersData.length})
+                      📖 Liste des chapitres ({chaptersData.length})
                     </h2>
                     <input
                       type="text"
-                      placeholder="Cari chapter..."
+                      placeholder="Rechercher un chapitre..."
                       className="bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-xs font-bold text-white outline-none focus:border-[#F6CF80] w-full md:w-48"
                       value={chapterSearch}
                       onChange={(e) => setChapterSearch(e.target.value)}
@@ -887,14 +887,14 @@ export default function Manga() {
                             onClick={() => setMangaView('reader', { slug: activeSlug, chapter: indexVal })}
                             className="bg-white/5 hover:bg-[#F6CF80] hover:text-black hover:border-[#F6CF80] border border-white/5 rounded-xl px-4 py-3 text-xs font-bold text-white/80 transition-all cursor-pointer text-center truncate"
                           >
-                            <span>Chapter {indexVal}</span>
+                            <span>Chapitre {indexVal}</span>
                           </button>
                         );
                       })}
                     </div>
                   ) : (
                     <div className="text-center py-10 text-white/30 text-xs font-bold">
-                      Chapter tidak ditemukan.
+                      Chapitre introuvable.
                     </div>
                   )}
                 </div>
@@ -906,16 +906,16 @@ export default function Manga() {
                 ⚠️
               </div>
               <div className="text-center">
-                <h3 className="text-white font-black text-sm tracking-wide">Gagal Memuat Detail Komik</h3>
+                <h3 className="text-white font-black text-sm tracking-wide">Échec du chargement des détails du comic</h3>
                 <p className="text-white/50 text-[11px] font-bold mt-1 leading-relaxed">
-                  Terjadi gangguan koneksi, limit server, atau data gagal diambil. Silakan coba memuat kembali halaman ini.
+                  Une erreur de connexion, une limite serveur ou un échec de récupération des données est survenue. Veuillez recharger cette page.
                 </p>
               </div>
               <button
                 onClick={() => setRetryTrigger(prev => prev + 1)}
                 className="w-full h-10 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded-xl font-black tracking-wider text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_4px_12px_rgba(246,207,128,0.2)] active:scale-95"
               >
-                🔄 Coba Lagi
+                🔄 Réessayer
               </button>
             </div>
           )}
@@ -930,7 +930,7 @@ export default function Manga() {
           <div className="flex flex-col gap-2 bg-[#16161a] border border-white/5 rounded-2xl p-3 mb-6 shadow-xl sticky top-20 z-50 backdrop-blur-xl">
             <div className="flex justify-between items-center gap-2">
               <div className="text-center min-w-0 flex-1">
-                <span className="text-[#F6CF80] font-black text-sm block truncate">Chapter {activeChapterIndex}</span>
+                <span className="text-[#F6CF80] font-black text-sm block truncate">Chapitre {activeChapterIndex}</span>
               </div>
             </div>
           </div>
@@ -939,7 +939,7 @@ export default function Manga() {
           <div className="flex flex-col gap-1 items-center bg-black rounded-3xl overflow-hidden py-4 border border-white/5 relative min-h-[400px]" id="reader-images-container">
             {isReaderLoading ? (
               <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-                <div className="text-[#F6CF80] text-xs font-black animate-pulse">Memuat lembar chapter...</div>
+                <div className="text-[#F6CF80] text-xs font-black animate-pulse">Chargement des pages du chapitre...</div>
               </div>
             ) : readerData && (readerData.images || readerData.data?.images) ? (() => {
               const imagesList = readerData.images || readerData.data?.images || [];
@@ -952,7 +952,7 @@ export default function Manga() {
                       referrerPolicy="no-referrer"
                       className="w-full max-w-full h-auto object-contain block select-none bg-black"
                       loading={i < 3 ? "eager" : "lazy"}
-                      alt={`Halaman ${i + 1}`}
+                      alt={`Page ${i + 1}`}
                       onError={(e) => {
                         // Fallback if specific image node CDN fails to load
                         e.target.style.display = 'none';
@@ -968,16 +968,16 @@ export default function Manga() {
                   ⚠️
                 </div>
                 <div className="text-center">
-                  <h4 className="text-white font-black text-xs tracking-wide">Gambar Gagal Dimuat</h4>
+                  <h4 className="text-white font-black text-xs tracking-wide">Échec du chargement des images</h4>
                   <p className="text-white/40 text-[10px] font-bold mt-1 leading-relaxed">
-                    Lembar gambar chapter gagal diambil dari server. Silakan coba memuat kembali chapter ini.
+                    Les pages du chapitre n'ont pas pu être récupérées depuis le serveur. Veuillez recharger ce chapitre.
                   </p>
                 </div>
                 <button
                   onClick={() => setRetryTrigger(prev => prev + 1)}
                   className="px-6 h-9 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded-lg font-black tracking-wider text-[10px] flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-[0_4px_10px_rgba(246,207,128,0.2)] active:scale-95"
                 >
-                  🔄 Coba Lagi
+                  🔄 Réessayer
                 </button>
               </div>
             )}
@@ -990,13 +990,13 @@ export default function Manga() {
                 onClick={() => navigateChapter('prev')}
                 className="bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl px-4 py-2.5 text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 flex-1 justify-center"
               >
-                ◀️ Chapter Sblm
+                ◀️ Chapitre préc.
               </button>
               <button
                 onClick={() => navigateChapter('next')}
                 className="bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl px-4 py-2.5 text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 flex-1 justify-center"
               >
-                Chapter Brkt ▶️
+                Chapitre suiv. ▶️
               </button>
             </div>
           )}
