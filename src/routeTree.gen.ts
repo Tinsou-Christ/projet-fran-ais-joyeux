@@ -19,7 +19,9 @@ import { Route as MangaRouteImport } from './routes/manga'
 import { Route as OngoingRouteImport } from './routes/ongoing'
 import { Route as ScheduleRouteImport } from './routes/schedule'
 import { Route as AnimeSlugRouteImport } from './routes/anime.$slug'
+import { Route as AnimeSlugIndexRouteImport } from './routes/anime.$slug.index'
 import { Route as AnimeSlugEpisodeRouteImport } from './routes/anime.$slug.$episode'
+import { Route as ApiPublicV1SplatRouteImport } from './routes/api/public/v1/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -71,10 +73,20 @@ const AnimeSlugRoute = AnimeSlugRouteImport.update({
   path: '/anime/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnimeSlugIndexRoute = AnimeSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AnimeSlugRoute,
+} as any)
 const AnimeSlugEpisodeRoute = AnimeSlugEpisodeRouteImport.update({
   id: '/$episode',
   path: '/$episode',
   getParentRoute: () => AnimeSlugRoute,
+} as any)
+const ApiPublicV1SplatRoute = ApiPublicV1SplatRouteImport.update({
+  id: '/api/public/v1/$',
+  path: '/api/public/v1/$',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -89,6 +101,8 @@ export interface FileRoutesByFullPath {
   '/schedule': typeof ScheduleRoute
   '/anime/$slug': typeof AnimeSlugRouteWithChildren
   '/anime/$slug/$episode': typeof AnimeSlugEpisodeRoute
+  '/anime/$slug/': typeof AnimeSlugIndexRoute
+  '/api/public/v1/$': typeof ApiPublicV1SplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -100,8 +114,9 @@ export interface FileRoutesByTo {
   '/manga': typeof MangaRoute
   '/ongoing': typeof OngoingRoute
   '/schedule': typeof ScheduleRoute
-  '/anime/$slug': typeof AnimeSlugRouteWithChildren
   '/anime/$slug/$episode': typeof AnimeSlugEpisodeRoute
+  '/anime/$slug': typeof AnimeSlugIndexRoute
+  '/api/public/v1/$': typeof ApiPublicV1SplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +131,8 @@ export interface FileRoutesById {
   '/schedule': typeof ScheduleRoute
   '/anime/$slug': typeof AnimeSlugRouteWithChildren
   '/anime/$slug/$episode': typeof AnimeSlugEpisodeRoute
+  '/anime/$slug/': typeof AnimeSlugIndexRoute
+  '/api/public/v1/$': typeof ApiPublicV1SplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +148,8 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/anime/$slug'
     | '/anime/$slug/$episode'
+    | '/anime/$slug/'
+    | '/api/public/v1/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -142,8 +161,9 @@ export interface FileRouteTypes {
     | '/manga'
     | '/ongoing'
     | '/schedule'
-    | '/anime/$slug'
     | '/anime/$slug/$episode'
+    | '/anime/$slug'
+    | '/api/public/v1/$'
   id:
     | '__root__'
     | '/'
@@ -157,6 +177,8 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/anime/$slug'
     | '/anime/$slug/$episode'
+    | '/anime/$slug/'
+    | '/api/public/v1/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -170,6 +192,7 @@ export interface RootRouteChildren {
   OngoingRoute: typeof OngoingRoute
   ScheduleRoute: typeof ScheduleRoute
   AnimeSlugRoute: typeof AnimeSlugRouteWithChildren
+  ApiPublicV1SplatRoute: typeof ApiPublicV1SplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -244,6 +267,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimeSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anime/$slug/': {
+      id: '/anime/$slug/'
+      path: '/'
+      fullPath: '/anime/$slug/'
+      preLoaderRoute: typeof AnimeSlugIndexRouteImport
+      parentRoute: typeof AnimeSlugRoute
+    }
     '/anime/$slug/$episode': {
       id: '/anime/$slug/$episode'
       path: '/$episode'
@@ -251,15 +281,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimeSlugEpisodeRouteImport
       parentRoute: typeof AnimeSlugRoute
     }
+    '/api/public/v1/$': {
+      id: '/api/public/v1/$'
+      path: '/api/public/v1/$'
+      fullPath: '/api/public/v1/$'
+      preLoaderRoute: typeof ApiPublicV1SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 interface AnimeSlugRouteChildren {
   AnimeSlugEpisodeRoute: typeof AnimeSlugEpisodeRoute
+  AnimeSlugIndexRoute: typeof AnimeSlugIndexRoute
 }
 
 const AnimeSlugRouteChildren: AnimeSlugRouteChildren = {
   AnimeSlugEpisodeRoute: AnimeSlugEpisodeRoute,
+  AnimeSlugIndexRoute: AnimeSlugIndexRoute,
 }
 
 const AnimeSlugRouteWithChildren = AnimeSlugRoute._addFileChildren(
@@ -277,6 +316,7 @@ const rootRouteChildren: RootRouteChildren = {
   OngoingRoute: OngoingRoute,
   ScheduleRoute: ScheduleRoute,
   AnimeSlugRoute: AnimeSlugRouteWithChildren,
+  ApiPublicV1SplatRoute: ApiPublicV1SplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

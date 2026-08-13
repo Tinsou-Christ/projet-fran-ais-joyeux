@@ -1,16 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Valeurs publiques (clé « anon » publiable) — surchargées par les variables d'environnement si présentes.
+const supabaseUrl =
+  import.meta.env.VITE_SUPABASE_URL || 'https://hdthvmpbgaqprlqznrtt.supabase.co';
+const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkdGh2bXBiZ2FxcHJscXpucnR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3Mjc4NTQsImV4cCI6MjA5OTMwMzg1NH0.VjKQ7nKYBA0brC3zkT-VkjsGzBgD8xmF3aNXCa3FkSc';
 
-// Initialize with dummy values if empty to avoid crash, but log a warning.
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn(
-    'Supabase URL or Anon Key is missing. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file.'
-  );
-}
-
-export const supabase = createClient(
-  supabaseUrl || 'https://placeholder-project.supabase.co',
-  supabaseAnonKey || 'placeholder-anon-key'
-);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
