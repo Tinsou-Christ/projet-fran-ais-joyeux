@@ -14,7 +14,7 @@ const WatchSkeleton = () => (
     <div className="w-full aspect-video bg-[#16161a] rounded-sm relative overflow-hidden mb-4 flex flex-col items-center justify-center border border-white/5">
       <ShimmerEffect />
       <img src="/img/kaguya.webp" alt="Loading" className="w-24 md:w-32 object-contain relative z-20 mb-4 opacity-50" />
-      <p className="text-[#F6CF80] text-xs md:text-sm font-bold text-center px-4 relative z-20">sabar yaa, server kami butuh waktu untuk merespon 😖</p>
+      <p className="text-[#F6CF80] text-xs md:text-sm font-bold text-center px-4 relative z-20">patience, notre serveur a besoin de temps pour répondre 😖</p>
     </div>
     
     <div className="flex flex-col gap-3 w-full mb-8">
@@ -230,8 +230,8 @@ const Watch = () => {
           };
           window.dispatchEvent(new Event('nefusoft-anime-updated'));
 
-          const shareTitle = `Tonton ${res.data.title} - NefuSoft`;
-          const shareDesc = res.data.synopsis ? res.data.synopsis.substring(0, 150) + '...' : 'Streaming anime subtitle Indonesia gratis.';
+          const shareTitle = `Regarder ${res.data.title} - NefuSoft`;
+          const shareDesc = res.data.synopsis ? res.data.synopsis.substring(0, 150) + '...' : 'Streaming d\'anime sous-titré gratuit.';
           const shareImg = res.data.image_poster || res.data.image_cover;
           
           updateMetaTags(shareTitle, shareDesc, shareImg);
@@ -249,8 +249,8 @@ const Watch = () => {
 
     return () => {
       updateMetaTags(
-        'NefuSoft - Streaming Anime Sub Indo Gratis',
-        'Nonton ribuan anime subtitle Indonesia secara gratis tanpa gangguan iklan di NefuSoft dengan kualitas tinggi.',
+        'NefuSoft - Streaming Anime Sous-titré Gratuit',
+        'Regardez des milliers d\'animes sous-titrés gratuitement sans publicité sur NefuSoft en haute qualité.',
         'https://raw.githubusercontent.com/alip-jmbd/alipp/main/icons-full.jpg'
       );
     };
@@ -348,7 +348,7 @@ const Watch = () => {
               videoRef.current.currentTime = savedTime;
               setCurrentTime(savedTime);
               setProgress((savedTime / dur) * 100);
-              setToast(`Melanjutkan menonton dari ${formatTime(savedTime)}`);
+              setToast(`Reprise de la lecture à ${formatTime(savedTime)}`);
               setTimeout(() => setToast(''), 3000);
             }
           }
@@ -562,7 +562,7 @@ const Watch = () => {
 
       const prevMode = skipMode;
       setSkipMode(prevMode === 'intro' ? 'outro' : 'intro');
-      setToast(prevMode === 'intro' ? 'Berhasil Melompati Intro 80 Detik' : 'Berhasil Melompati Outro 80 Detik');
+      setToast(prevMode === 'intro' ? 'Intro passée avec succès (80 secondes)' : 'Outro passée avec succès (80 secondes)');
       setTimeout(() => setToast(''), 3000);
     }
     resetControlsTimeout();
@@ -639,7 +639,7 @@ const Watch = () => {
 
   const handleShare = async (platform) => {
     const url = window.location.href;
-    const textMsg = `Tonton ${anime?.title || 'Anime'} di NefuSoft, Gratis & Tanpa Iklan !!`;
+    const textMsg = `Regarde ${anime?.title || 'Anime'} sur NefuSoft, Gratuit & Sans Pub !!`;
     const encodedText = encodeURIComponent(textMsg);
     const encodedUrl = encodeURIComponent(url);
 
@@ -665,7 +665,7 @@ const Watch = () => {
     } else if (platform === 'copy') {
       try { 
         await navigator.clipboard.writeText(`${textMsg} \n\n${url}`); 
-        setToast('Tautan berhasil disalin!');
+        setToast('Lien copié avec succès !');
         setTimeout(() => setToast(''), 3000);
       } catch (e) {}
     } else if (platform === 'fb') {
@@ -699,10 +699,10 @@ const Watch = () => {
     };
     if (isFavorited) {
       removeFavorite(id);
-      setToast('Dihapus dari Favorit!');
+      setToast('Retiré des Favoris !');
     } else {
       saveFavorite(animePayload);
-      setToast('Ditambahkan ke Favorit!');
+      setToast('Ajouté aux Favoris !');
     }
     setTimeout(() => setToast(''), 3000);
   };
@@ -753,16 +753,16 @@ const Watch = () => {
               ⚠️
             </div>
             <div className="text-center">
-              <h3 className="text-white font-black text-sm tracking-wide">Gagal Memuat Detail Anime</h3>
+              <h3 className="text-white font-black text-sm tracking-wide">Échec du chargement des détails de l'anime</h3>
               <p className="text-white/50 text-[11px] font-bold mt-1 leading-relaxed">
-                Terjadi gangguan koneksi, rate-limiting (403/429), atau server sedang sibuk. Silakan coba lagi.
+                Un problème de connexion, une limitation de débit (403/429) ou un serveur occupé s'est produit. Veuillez réessayer.
               </p>
             </div>
             <button
               onClick={() => setRetryTrigger(prev => prev + 1)}
               className="w-full h-10 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded-xl font-black tracking-wider text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_4px_12px_rgba(246,207,128,0.2)] active:scale-95"
             >
-              🔄 Coba Lagi
+              🔄 Réessayer
             </button>
           </div>
         ) : (
@@ -780,7 +780,7 @@ const Watch = () => {
                       return (
                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-20 pointer-events-none">
                           <img src="/img/kaguya.webp" alt="Loading" className="w-24 md:w-32 animate-pulse mb-4 object-contain" />
-                          <p className="text-[#F6CF80] text-xs md:text-sm font-bold text-center px-4 animate-pulse">sabar yaa, server kami butuh waktu untuk merespon 😖</p>
+                          <p className="text-[#F6CF80] text-xs md:text-sm font-bold text-center px-4 animate-pulse">patience, notre serveur a besoin de temps pour répondre 😖</p>
                         </div>
                       );
                     }
@@ -865,7 +865,7 @@ const Watch = () => {
                     )
                   ) : !isEpLoading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black z-20 pointer-events-none text-white/50 text-xs font-bold">
-                       video tidak tersedia
+                       vidéo non disponible
                     </div>
                   )}
                 </div>
@@ -955,7 +955,7 @@ const Watch = () => {
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                 </svg>
-                                {skipMode === 'intro' ? 'Lompat Intro' : 'Lompat Outro'}
+                                {skipMode === 'intro' ? 'Passer l'intro' : 'Passer l'outro'}
                               </button>
 
                               <button onClick={() => { setShowResolutions(!showResolutions); setShowSpeeds(false); }} className="text-[11px] md:text-xs font-black hover:text-[#F6CF80] transition-colors flex items-center gap-1 uppercase drop-shadow-md">
@@ -1022,7 +1022,7 @@ const Watch = () => {
 
             {servers.length > 0 && (
               <div className="bg-[#16161a] border border-white/5 rounded-xl p-4 md:p-5 shadow-2xl text-left mb-4">
-                <span className="font-black text-white/40 uppercase text-[10px] tracking-widest block mb-3">PILIH SERVER / RESOLUSI</span>
+                <span className="font-black text-white/40 uppercase text-[10px] tracking-widest block mb-3">CHOISIR SERVEUR / RÉSOLUTION</span>
                 <div className="flex flex-wrap gap-2">
                   {servers.map((srv, idx) => (
                     <button
@@ -1052,7 +1052,7 @@ const Watch = () => {
                           : 'bg-white/5 text-white/80 border-transparent hover:bg-white/10 hover:border-white/10'
                       }`}
                     >
-                      {srv.quality || srv.name || `Server ${idx + 1}`}
+                      {srv.quality || srv.name || `Serveur ${idx + 1}`}
                     </button>
                   ))}
                 </div>
@@ -1063,11 +1063,11 @@ const Watch = () => {
               <div className="flex gap-3 w-full">
                 <button onClick={handlePrev} disabled={epIndex >= episodes.length - 1} className="flex-1 flex items-center justify-center gap-2 bg-transparent hover:bg-white/5 border border-white/20 py-3 md:py-4 rounded-lg transition-all disabled:opacity-30 text-white group">
                   <svg className="w-5 h-5 text-white/50 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
-                  <span className="text-sm md:text-base font-black">Episode Sebelumnya</span>
+                  <span className="text-sm md:text-base font-black">Épisode précédent</span>
                 </button>
 
                 <button onClick={handleNext} disabled={epIndex <= 0} className="flex-1 flex items-center justify-center gap-2 bg-transparent hover:bg-[#F6CF80]/10 border border-[#F6CF80]/40 py-3 md:py-4 rounded-lg transition-all disabled:opacity-30 text-[#F6CF80] group">
-                  <span className="text-sm md:text-base font-black">Episode Selanjutnya</span>
+                  <span className="text-sm md:text-base font-black">Épisode suivant</span>
                   <svg className="w-5 h-5 text-[#F6CF80]/50 group-hover:text-[#F6CF80] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
                 </button>
               </div>
@@ -1083,7 +1083,7 @@ const Watch = () => {
                   </svg>
                   <span className="text-sm md:text-base font-black uppercase tracking-wider">AutoNext {autoNext ? 'ON' : 'OFF'}</span>
                 </div>
-                <span className={`text-[10px] ${autoNext ? 'text-[#F6CF80]/70' : 'text-white/40'} font-bold lowercase`}>hidupkan untuk memutar otomatis episode selanjutnya</span>
+                <span className={`text-[10px] ${autoNext ? 'text-[#F6CF80]/70' : 'text-white/40'} font-bold lowercase`}>activer pour lire automatiquement l'épisode suivant</span>
               </button>
             </div>
 
@@ -1095,13 +1095,13 @@ const Watch = () => {
                  </div>
                  <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                    <div>
-                     <h3 className="text-white font-black uppercase text-sm md:text-base mb-1 tracking-tight">Sebarkan Keseruan Ini!</h3>
-                     <p className="text-white/60 text-[10px] md:text-xs font-medium">Bagikan keseruan nonton anime ini ke teman-temanmu!</p>
+                     <h3 className="text-white font-black uppercase text-sm md:text-base mb-1 tracking-tight">Partage ce moment !</h3>
+                     <p className="text-white/60 text-[10px] md:text-xs font-medium">Partage cet anime avec tes amis !</p>
                    </div>
                    <div className="flex gap-2.5 flex-wrap">
                       <button onClick={() => handleShare('copy')} className="bg-white/5 hover:bg-[#F6CF80] hover:text-black hover:border-[#F6CF80] border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2 transition-all font-black text-[11px] text-white">
                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                         Salin Link
+                         Copier le lien
                       </button>
                       <button onClick={() => handleShare('fb')} className="bg-[#1877F2]/10 hover:bg-[#1877F2] border border-[#1877F2]/20 px-4 py-2 rounded-lg flex items-center gap-2 transition-all group">
                          <svg className="w-3.5 h-3.5 fill-[#1877F2] group-hover:fill-white transition-colors" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -1123,7 +1123,7 @@ const Watch = () => {
 
             {/* Episode List Row */}
             <div className="bg-[#16161a] rounded-sm border border-white/5 p-4 md:p-6 shadow-xl mb-8">
-              <h3 className="text-white font-black uppercase text-sm mb-4 tracking-wider">Daftar Episode</h3>
+              <h3 className="text-white font-black uppercase text-sm mb-4 tracking-wider">Liste des épisodes</h3>
               {episodes.length === 0 ? (
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(45px,1fr))] gap-2 max-h-56 overflow-y-hidden pr-2">
                   {[...Array(10)].map((_, i) => (
@@ -1190,7 +1190,7 @@ const Watch = () => {
                         <svg className="w-3.5 h-3.5" fill={isFavorited ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
-                        {isFavorited ? 'Favorit' : 'Tambah Favorit'}
+                        {isFavorited ? 'Favorit' : 'Ajouter aux favoris'}
                       </button>
                     </div>
 
@@ -1198,9 +1198,9 @@ const Watch = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-[10px] md:text-xs text-left">
                       <div className="flex border-b border-white/5 pb-2"><span className="text-white/40 font-black uppercase tracking-widest w-24 text-left">Studio</span><span className="text-white/90 font-bold flex-1 text-right md:text-left">{anime.studio || '?'}</span></div>
-                      <div className="flex border-b border-white/5 pb-2"><span className="text-white/40 font-black uppercase tracking-widest w-24 text-left">Tahun</span><span className="text-white/90 font-bold flex-1 text-right md:text-left">{anime.year || '?'}</span></div>
+                      <div className="flex border-b border-white/5 pb-2"><span className="text-white/40 font-black uppercase tracking-widest w-24 text-left">Année</span><span className="text-white/90 font-bold flex-1 text-right md:text-left">{anime.year || '?'}</span></div>
                       <div className="flex border-b border-white/5 pb-2"><span className="text-white/40 font-black uppercase tracking-widest w-24 text-left">Genre</span><span className="text-[#F6CF80] font-bold flex-1 text-right md:text-left">{anime.genre?.replace(/,/g, ', ') || '?'}</span></div>
-                      <div className="flex border-b border-white/5 pb-2"><span className="text-white/40 font-black uppercase tracking-widest w-24 text-left">Tayang</span><span className="text-white/90 font-bold flex-1 text-right md:text-left">{anime.day || '?'}</span></div>
+                      <div className="flex border-b border-white/5 pb-2"><span className="text-white/40 font-black uppercase tracking-widest w-24 text-left">Diffusion</span><span className="text-white/90 font-bold flex-1 text-right md:text-left">{anime.day || '?'}</span></div>
                     </div>
                   </div>
                 </div>
@@ -1210,8 +1210,8 @@ const Watch = () => {
             {servers.length > 0 && (
               <div className="mb-10 bg-[#16161a] rounded-sm border border-white/5 p-4 md:p-6 shadow-xl">
                 <div className="flex flex-col mb-4">
-                  <h3 className="text-white font-black uppercase text-xs md:text-sm tracking-wider">Download Episode {currentEpNum}</h3>
-                  <span className="text-[9px] text-white/50 font-bold uppercase tracking-widest mt-1">Pilih resolusi video</span>
+                  <h3 className="text-white font-black uppercase text-xs md:text-sm tracking-wider">Télécharger l'épisode {currentEpNum}</h3>
+                  <span className="text-[9px] text-white/50 font-bold uppercase tracking-widest mt-1">Choisir la résolution vidéo</span>
                 </div>
                 <div className="flex flex-wrap gap-2 md:gap-3">
                   {servers.map(s => (
@@ -1229,7 +1229,7 @@ const Watch = () => {
 
         {!isLoading && recommendations.length > 0 && (
           <div className="mb-12">
-            <h3 className="text-white font-black uppercase text-sm mb-5 tracking-wider">Rekomendasi Lainnya</h3>
+            <h3 className="text-white font-black uppercase text-sm mb-5 tracking-wider">Autres recommandations</h3>
             <div className="flex flex-col gap-3">
               {recommendations.map((a) => (
                 <div key={a.id} onClick={() => navigate(`/anime/${a.id}-${(a.title||'').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, { state: { anime: a } })} className="group cursor-pointer relative h-20 md:h-24 rounded-sm bg-[#16161a] border border-white/5 flex items-center px-4 overflow-hidden transition-transform active:scale-[0.98]">
