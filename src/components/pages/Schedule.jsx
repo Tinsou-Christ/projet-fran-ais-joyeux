@@ -71,7 +71,7 @@ const ScheduleCard = ({ a, onClick, index }) => {
           <div className="flex flex-col flex-1 min-w-0 overflow-hidden relative z-10">
             <div className="mb-2">
               <span className="bg-[#F6CF80] text-black text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-wider">
-                {ep ? `Episode Terakhir : ${ep}` : 'Menunggu Update'}
+                {ep ? `Dernier épisode : ${ep}` : 'En attente de mise à jour'}
               </span>
             </div>
             <h3 className="font-bold text-sm md:text-base text-white line-clamp-2 mb-2 group-hover/card:text-[#F6CF80] transition-colors">{a.title}</h3>
@@ -81,11 +81,11 @@ const ScheduleCard = ({ a, onClick, index }) => {
                 <span className="flex-1 text-white/80 font-medium line-clamp-1">{a.genre ? a.genre.replace(/,/g, ', ') : '-'}</span>
               </div>
               <div className="flex items-start gap-2">
-                <span className="w-16 md:w-20 shrink-0 font-bold text-white/40 uppercase tracking-widest text-[9px] md:text-[10px]">Aired</span>
+                <span className="w-16 md:w-20 shrink-0 font-bold text-white/40 uppercase tracking-widest text-[9px] md:text-[10px]">Diffusion</span>
                 <span className="flex-1 text-white/80 font-medium">{a.aired_start || '-'}</span>
               </div>
               <div className="flex items-start gap-2">
-                <span className="w-16 md:w-20 shrink-0 font-bold text-white/40 uppercase tracking-widest text-[9px] md:text-[10px]">Time</span>
+                <span className="w-16 md:w-20 shrink-0 font-bold text-white/40 uppercase tracking-widest text-[9px] md:text-[10px]">Horaire</span>
                 <span className="flex-1 text-[#F6CF80] font-bold">{a.time || '-'}</span>
               </div>
             </div>
@@ -160,7 +160,7 @@ const Schedule = () => {
       <Navbar />
 
       <div className="pt-24 max-w-2xl mx-auto px-4">
-        <h2 className="text-white font-black text-xl text-center mb-8 italic tracking-tighter">JADWAL TAYANG</h2>
+        <h2 className="text-white font-black text-xl text-center mb-8 italic tracking-tighter">PROGRAMME DE DIFFUSION</h2>
         
         <div className="flex justify-between items-center mb-8 px-2 border-b border-white/5 pb-4">
           {weekDates.map(w => (
@@ -186,7 +186,7 @@ const Schedule = () => {
             )) : (
               <div className="py-20 flex flex-col items-center justify-center text-center">
                 <svg className="w-12 h-12 text-white/5 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                <p className="text-white/20 text-xs font-bold uppercase tracking-widest italic">Belum ada jadwal</p>
+                <p className="text-white/20 text-xs font-bold uppercase tracking-widest italic">Aucun programme pour le moment</p>
               </div>
             )
           )}

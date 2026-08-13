@@ -108,7 +108,7 @@ const Navbar = () => {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('File harus berupa gambar!');
+      alert('Le fichier doit être une image !');
       return;
     }
 
@@ -178,7 +178,7 @@ const Navbar = () => {
     e.preventDefault();
     if (!user) return;
     if (!editUsername.trim()) {
-      alert('Nama pengguna tidak boleh kosong!');
+      alert('Le nom d’utilisateur ne peut pas être vide !');
       return;
     }
     setIsSavingProfile(true);
@@ -196,11 +196,11 @@ const Navbar = () => {
             avatar_url: editAvatarUrl.trim(),
           }
         });
-        alert('Profil berhasil diperbarui!');
+        alert('Profil mis à jour avec succès !');
         setShowProfileModal(false);
       }
     } catch (err) {
-      alert('Gagal menyimpan profil: ' + err.message);
+      alert('Échec de l’enregistrement du profil : ' + err.message);
     } finally {
       setIsSavingProfile(false);
     }
@@ -212,13 +212,13 @@ const Navbar = () => {
     const errorDesc = params.get('error_description');
     if (error) {
       alert(
-        `Gagal Login dengan Google!\n\n` +
-        `Penyebab: ${errorDesc || error}\n\n` +
-        `Saran Solusi:\n` +
-        `1. Pastikan fitur "Google" Provider sudah aktif (Enabled) di dashboard Supabase Anda (Authentication -> Providers -> Google).\n` +
-        `2. Pastikan Client ID dan Client Secret yang dipasang di Supabase sudah benar.\n` +
-        `3. Pastikan "Authorized redirect URIs" di Google Cloud Console diatur ke callback URL Supabase Anda (misal: https://<project-id>.supabase.co/auth/v1/callback) dan BUKAN domain web Anda.\n` +
-        `4. Pastikan domain web Anda (${window.location.origin}) sudah didaftarkan di dashboard Supabase -> Authentication -> URL Configuration -> Redirect URLs.`
+        `Échec de connexion avec Google !\n\n` +
+        `Cause : ${errorDesc || error}\n\n` +
+        `Suggestions de solution :\n` +
+        `1. Vérifiez que le fournisseur "Google" est activé (Enabled) dans votre tableau de bord Supabase (Authentication -> Providers -> Google).\n` +
+        `2. Vérifiez que le Client ID et le Client Secret configurés dans Supabase sont corrects.\n` +
+        `3. Vérifiez que les "Authorized redirect URIs" dans Google Cloud Console pointent vers l'URL de callback de Supabase (ex : https://<project-id>.supabase.co/auth/v1/callback) et NON vers votre domaine web.\n` +
+        `4. Vérifiez que votre domaine web (${window.location.origin}) est bien enregistré dans le tableau de bord Supabase -> Authentication -> URL Configuration -> Redirect URLs.`
       );
       const newUrl = window.location.pathname + window.location.hash;
       window.history.replaceState({}, document.title, newUrl);
@@ -321,7 +321,7 @@ const Navbar = () => {
       if (error) throw error;
     } catch (e) {
       console.error('Google Auth Error:', e.message);
-      alert('Gagal login dengan Google: ' + e.message);
+      alert('Échec de connexion avec Google : ' + e.message);
     }
   };
 
@@ -339,15 +339,15 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { path: '/home', label: 'Home', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/> },
+    { path: '/home', label: 'Accueil', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/> },
     { path: '/donghua', label: 'Donghua', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M6 4h12a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2zm4 4l5 3-5 3V8z" /> },
     { path: '/manga', label: 'Manga', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /> },
-    { path: '/settings', label: 'Setting', icon: <g><path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></g> },
-    { path: '/favorites', label: 'Favorit', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /> },
-    { path: '/explore', label: 'Explore', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/> },
-    { path: '/history', label: 'History', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/> },
-    { path: '/ongoing', label: 'Ongoing', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/> },
-    { path: '/schedule', label: 'Schedule', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/> }
+    { path: '/settings', label: 'Réglages', icon: <g><path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></g> },
+    { path: '/favorites', label: 'Favoris', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /> },
+    { path: '/explore', label: 'Explorer', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/> },
+    { path: '/history', label: 'Historique', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/> },
+    { path: '/ongoing', label: 'En cours', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/> },
+    { path: '/schedule', label: 'Planning', icon: <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/> }
   ];
 
   const getProxyUrl = (url) => url ? `https://cf.tiyanstores.workers.dev/?url=${encodeURIComponent(url)}` : '';
@@ -371,7 +371,7 @@ const Navbar = () => {
               <button
                 onClick={handleToggleFavoriteNavbar}
                 className="w-9 h-9 bg-white/5 rounded-full flex items-center justify-center text-white cursor-pointer border border-white/10 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all shrink-0"
-                title={isFavorited ? "Hapus dari Favorit" : "Tambah ke Favorit"}
+                title={isFavorited ? "Retirer des favoris" : "Ajouter aux favoris"}
               >
                 <svg className="w-4 h-4" fill={isFavorited ? "#ef4444" : "none"} stroke={isFavorited ? "#ef4444" : "currentColor"} strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
@@ -413,7 +413,7 @@ const Navbar = () => {
                     <div className="border-b border-white/5 pb-2 mb-1">
                       <div className="flex items-center gap-1.5 mb-0.5">
                         <p className="text-white font-black text-xs truncate max-w-[110px]">
-                          {profile?.username || user.user_metadata?.full_name || 'User Nefu'}
+                          {profile?.username || user.user_metadata?.full_name || 'Utilisateur Nefu'}
                         </p>
                         <span className="bg-[#F6CF80] text-black text-[9px] font-black px-1.5 py-0.2 rounded-full shrink-0">
                           Lv.{profile?.level || 1}
@@ -425,19 +425,19 @@ const Navbar = () => {
                       onClick={() => { setShowProfileModal(true); setShowProfileDropdown(false); }}
                       className="text-[#F6CF80] hover:text-[#F6CF80]/80 text-left text-xs font-black py-1.5 transition-colors"
                     >
-                      Pengaturan Profil
+                      Paramètres du profil
                     </button>
                     <button
                       onClick={() => { navigate('/history'); setShowProfileDropdown(false); }}
                       className="text-white/70 hover:text-[#F6CF80] text-left text-xs font-bold py-1.5 transition-colors"
                     >
-                      Riwayat Nonton
+                      Historique de visionnage
                     </button>
                     <button
                       onClick={handleLogout}
                       className="text-red-400 hover:text-red-500 text-left text-xs font-black py-1.5 transition-colors border-t border-white/5 pt-2"
                     >
-                      Keluar / Logout
+                      Déconnexion
                     </button>
                   </div>
                 )}
@@ -458,7 +458,7 @@ const Navbar = () => {
                 ref={searchInputRef}
                 type="text" 
                 className="flex-1 bg-transparent text-white text-sm outline-none font-bold placeholder-white/30"
-                placeholder="Cari anime..."
+                placeholder="Rechercher un anime..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsInputFocused(true)}
@@ -484,7 +484,7 @@ const Navbar = () => {
               return (
                 <div className="flex flex-col border-b border-white/5 pb-2">
                   <div className="flex items-center justify-between px-4 pt-3 pb-1 text-[10px] font-black uppercase tracking-wider text-white/50">
-                    <span>Riwayat Pencarian</span>
+                    <span>Historique de recherche</span>
                     <button
                       type="button"
                       onClick={(e) => {
@@ -493,7 +493,7 @@ const Navbar = () => {
                       }}
                       className="text-[#F6CF80] hover:text-[#F6CF80]/80 transition-colors normal-case text-[10px] font-bold cursor-pointer"
                     >
-                      Hapus Semua
+                      Tout supprimer
                     </button>
                   </div>
                   <div className="flex flex-col">
@@ -523,7 +523,7 @@ const Navbar = () => {
                             deleteHistoryItem(item);
                           }}
                           className="text-white/30 hover:text-red-400 hover:bg-white/10 p-1 rounded-full transition-all cursor-pointer ml-2"
-                          title="Hapus"
+                          title="Supprimer"
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -540,10 +540,10 @@ const Navbar = () => {
             {searchQuery.length > 2 && (
               <div className="flex flex-col">
                 <div className="px-4 pt-3 pb-1 text-[10px] font-black uppercase tracking-wider text-white/50">
-                  Hasil Anime
+                  Résultats Anime
                 </div>
                 {isLiveLoading ? (
-                  <div className="p-6 text-center text-[#F6CF80] text-xs font-bold animate-pulse">mencari...</div>
+                  <div className="p-6 text-center text-[#F6CF80] text-xs font-bold animate-pulse">recherche...</div>
                 ) : liveResults.length > 0 ? (
                   liveResults.map(r => (
                     <div
@@ -563,7 +563,7 @@ const Navbar = () => {
                     </div>
                   ))
                 ) : (
-                  <div className="p-6 text-center text-white/40 text-xs font-bold">anime tidak ditemukan</div>
+                  <div className="p-6 text-center text-white/40 text-xs font-bold">aucun anime trouvé</div>
                 )}
               </div>
             )}
@@ -609,9 +609,9 @@ const Navbar = () => {
             </button>
             <img src="https://raw.githubusercontent.com/alip-jmbd/alipp/main/irohaplenger.jpg" alt="Login Banner" className="w-28 h-28 object-cover rounded-full mb-6 shadow-[0_0_30px_rgba(246,207,128,0.15)] border-4 border-[#F6CF80]/20" />
 
-            <h3 className="text-white font-black text-2xl mb-2 text-center tracking-tight">Masuk ke NefuSoft</h3>
+            <h3 className="text-white font-black text-2xl mb-2 text-center tracking-tight">Connexion à NefuSoft</h3>
             <p className="text-white/50 text-xs font-medium text-center leading-relaxed mb-6">
-              Masuk menggunakan akun Google Anda untuk dapat ikut berpartisipasi dalam obrolan Live Chat.
+              Connectez-vous avec votre compte Google pour pouvoir participer au Live Chat.
             </p>
 
             <button
@@ -636,7 +636,7 @@ const Navbar = () => {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
                 />
               </svg>
-              Masuk dengan Google
+              Se connecter avec Google
             </button>
           </div>
         </div>
@@ -649,7 +649,7 @@ const Navbar = () => {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
 
-            <h3 className="text-white font-black text-xl md:text-2xl mb-4 tracking-tight">Pengaturan Profil</h3>
+            <h3 className="text-white font-black text-xl md:text-2xl mb-4 tracking-tight">Paramètres du profil</h3>
 
             {/* Level & XP Info */}
             {(() => {
@@ -657,7 +657,7 @@ const Navbar = () => {
               return (
                 <div className="bg-[#1e1e24] border border-white/5 rounded-2xl p-4 mb-6 flex flex-col gap-2.5">
                   <div className="flex justify-between items-center">
-                    <span className="text-white/50 text-[10px] font-black uppercase tracking-wider">Level Akun</span>
+                    <span className="text-white/50 text-[10px] font-black uppercase tracking-wider">Niveau du compte</span>
                     <span className="bg-[#F6CF80] text-black text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-[0_0_10px_rgba(246,207,128,0.2)]">
                       Lv. {levelInfo.level}
                     </span>
@@ -666,8 +666,8 @@ const Navbar = () => {
                   {/* Progress Bar */}
                   <div>
                     <div className="flex justify-between items-center text-[10px] text-white/40 font-bold mb-1.5">
-                      <span>Progres Naik Level</span>
-                      <span className="text-[#F6CF80]">{levelInfo.watchedCount} / {levelInfo.level * levelInfo.level} Episode</span>
+                      <span>Progression du niveau</span>
+                      <span className="text-[#F6CF80]">{levelInfo.watchedCount} / {levelInfo.level * levelInfo.level} Épisodes</span>
                     </div>
                     <div className="w-full h-2 bg-black/40 rounded-full overflow-hidden border border-white/5">
                       <div
@@ -678,7 +678,7 @@ const Navbar = () => {
                   </div>
 
                   <p className="text-[10px] text-white/50 font-semibold leading-relaxed">
-                    * Level akun Anda meningkat dengan terus menonton episode anime di NefuSoft. Semakin tinggi level Anda, semakin lama/banyak episode yang dibutuhkan untuk naik level berikutnya!
+                    * Le niveau de votre compte augmente en continuant à regarder des épisodes d'anime sur NefuSoft. Plus votre niveau est élevé, plus il faut d'épisodes pour passer au niveau suivant !
                   </p>
                 </div>
               );
@@ -697,7 +697,7 @@ const Navbar = () => {
                   )}
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-white font-black text-sm">{editUsername || 'User Nefu'}</span>
+                  <span className="text-white font-black text-sm">{editUsername || 'Utilisateur Nefu'}</span>
                   <span className="text-white/40 text-[10px]">{user.email}</span>
                   <button
                     type="button"
@@ -707,7 +707,7 @@ const Navbar = () => {
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5h10.5a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0016.5 4.5H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z"/>
                     </svg>
-                    Upload Gambar
+                    Télécharger une image
                   </button>
                   <input
                     type="file"
@@ -721,11 +721,11 @@ const Navbar = () => {
 
               {/* Username Input */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/50 text-[10px] font-black uppercase tracking-wider">Nama Pengguna (Username)</label>
+                <label className="text-white/50 text-[10px] font-black uppercase tracking-wider">Nom d'utilisateur</label>
                 <input
                   type="text"
                   required
-                  placeholder="Masukkan username baru..."
+                  placeholder="Entrez le nouveau nom d'utilisateur..."
                   value={editUsername}
                   onChange={(e) => setEditUsername(e.target.value)}
                   className="bg-[#0a0a0c] border border-white/10 px-4 py-2.5 rounded-xl text-xs font-bold text-white outline-none focus:border-[#F6CF80]/40 transition-colors"
@@ -735,10 +735,10 @@ const Navbar = () => {
 
               {/* Avatar URL Input */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-white/50 text-[10px] font-black uppercase tracking-wider">URL Foto Profil (Avatar URL)</label>
+                <label className="text-white/50 text-[10px] font-black uppercase tracking-wider">URL de la photo de profil</label>
                 <input
                   type="text"
-                  placeholder="Masukkan URL foto profil..."
+                  placeholder="Entrez l'URL de la photo de profil..."
                   value={editAvatarUrl}
                   onChange={(e) => setEditAvatarUrl(e.target.value)}
                   className="bg-[#0a0a0c] border border-white/10 px-4 py-2.5 rounded-xl text-xs font-bold text-white outline-none focus:border-[#F6CF80]/40 transition-colors"
@@ -753,14 +753,14 @@ const Navbar = () => {
                     onClick={() => setShowProfileModal(false)}
                     className="flex-1 bg-white/5 hover:bg-white/10 text-white font-black text-xs py-3 rounded-xl transition-all cursor-pointer text-center"
                   >
-                    Batal
+                    Annuler
                   </button>
                   <button
                     type="submit"
                     disabled={isSavingProfile}
                     className="flex-1 bg-[#F6CF80] hover:bg-[#F6CF80]/90 text-black font-black text-xs py-3 rounded-xl transition-all cursor-pointer disabled:opacity-50 text-center"
                   >
-                    {isSavingProfile ? 'Menyimpan...' : 'Simpan Perubahan'}
+                    {isSavingProfile ? 'Enregistrement...' : 'Enregistrer les modifications'}
                   </button>
                 </div>
 
@@ -772,7 +772,7 @@ const Navbar = () => {
                   }}
                   className="w-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 hover:border-transparent font-black text-xs py-3 rounded-xl transition-all cursor-pointer text-center mt-2"
                 >
-                  Keluar / Logout
+                  Déconnexion
                 </button>
               </div>
             </form>

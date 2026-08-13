@@ -172,7 +172,7 @@ const Home = () => {
 
   const handleShare = async (platform) => {
     const url = window.location.href;
-    const text = 'Ajak temanmu nonton anime favorit bareng di NefuSoft, gratis dan tanpa iklan!!';
+    const text = 'Invite tes amis à regarder tes animes préférés sur NefuSoft, gratuit et sans publicité !!';
     const encodedText = encodeURIComponent(text);
     
     if (platform === 'api') {
@@ -211,7 +211,7 @@ const Home = () => {
       
       {copyToast && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 bg-[#F6CF80] text-black px-6 py-3 rounded-full font-black text-sm z-[999] shadow-[0_10px_30px_rgba(246,207,128,0.3)] animate-[fadeIn_0.3s_ease-out_forwards]">
-          Tautan berhasil disalin!
+          Lien copié avec succès !
         </div>
       )}
 
@@ -245,7 +245,7 @@ const Home = () => {
                     <div className="flex items-center gap-2 mt-1 md:mt-2">
                       <button onClick={() => navigate(`/anime/${a.id}-${(a.title||'').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, { state: { anime: a } })} className="h-8 md:h-10 px-5 md:px-6 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded font-black tracking-wider text-[10px] md:text-xs flex items-center justify-center gap-1.5 shrink-0 transition-colors">
                         <svg className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        <span className="leading-none pt-[1px] md:pt-[2px]">Tonton</span>
+                        <span className="leading-none pt-[1px] md:pt-[2px]">Regarder</span>
                       </button>
                     </div>
                   </div>
@@ -273,13 +273,13 @@ const Home = () => {
            </div>
            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
              <div>
-               <h3 className="text-white font-black uppercase text-sm md:text-base mb-1 tracking-tight">Sebarkan Keseruan Ini!</h3>
-               <p className="text-white/60 text-[10px] md:text-xs font-medium">Ajak teman-temanmu marathon anime favorit bareng di NefuSoft.</p>
+               <h3 className="text-white font-black uppercase text-sm md:text-base mb-1 tracking-tight">Partage ce moment !</h3>
+               <p className="text-white/60 text-[10px] md:text-xs font-medium">Invite tes amis à faire un marathon de tes animes préférés sur NefuSoft.</p>
              </div>
              <div className="flex gap-2.5 flex-wrap">
                 <button onClick={() => handleShare('copy')} className="bg-white/5 hover:bg-[#F6CF80] hover:text-black hover:border-[#F6CF80] border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2 transition-all font-black text-[11px] text-white">
                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                   Salin Link
+                   Copier le lien
                 </button>
                 <button onClick={() => handleShare('fb')} className="bg-[#1877F2]/10 hover:bg-[#1877F2] border border-[#1877F2]/20 px-4 py-2 rounded-lg flex items-center gap-2 transition-all group">
                    <svg className="w-3.5 h-3.5 fill-[#1877F2] group-hover:fill-white transition-colors" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -292,7 +292,7 @@ const Home = () => {
                 </button>
                 <button onClick={() => handleShare('api')} className="bg-white/5 hover:bg-white hover:text-black border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2 transition-all font-black text-[11px] text-white">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                  Lainnya
+                  Plus
                 </button>
              </div>
            </div>
@@ -303,10 +303,10 @@ const Home = () => {
         <div className="flex items-center justify-between mb-4 px-2">
           <div className="flex flex-col cursor-pointer group" onClick={() => navigate('/ongoing')}>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-black text-white uppercase leading-none group-hover:text-[#F6CF80] transition-colors tracking-tight">Ongoing</h2>
+              <h2 className="text-lg font-black text-white uppercase leading-none group-hover:text-[#F6CF80] transition-colors tracking-tight">En cours</h2>
               <svg className="w-5 h-5 text-white/40 group-hover:text-[#F6CF80] transition-colors" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
             </div>
-            <span className="text-[10px] text-white/40 mt-1 font-bold uppercase tracking-widest">Anime yang sedang tayang</span>
+            <span className="text-[10px] text-white/40 mt-1 font-bold uppercase tracking-widest">Animes actuellement diffusés</span>
           </div>
           <div className="flex gap-2">
              <button onClick={() => scroll(ongoingScrollRef, 'left')} className="w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-full group hover:bg-white/20 transition-colors"><svg className="w-4 h-4 text-white/50 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 19l-7-7 7-7"/></svg></button>
@@ -338,10 +338,10 @@ const Home = () => {
         <div className="flex items-center justify-between mb-4 px-2">
           <div className="flex flex-col cursor-pointer group" onClick={() => navigate('/schedule')}>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-black text-white uppercase leading-none group-hover:text-[#F6CF80] transition-colors tracking-tight">Today</h2>
+              <h2 className="text-lg font-black text-white uppercase leading-none group-hover:text-[#F6CF80] transition-colors tracking-tight">Aujourd'hui</h2>
               <svg className="w-5 h-5 text-white/40 group-hover:text-[#F6CF80] transition-colors" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
             </div>
-            <span className="text-[10px] text-white/40 mt-1 font-bold uppercase tracking-widest">Anime hari ini</span>
+            <span className="text-[10px] text-white/40 mt-1 font-bold uppercase tracking-widest">Animes du jour</span>
           </div>
           <div className="flex gap-2">
              <button onClick={() => scroll(todayScrollRef, 'left')} className="w-8 h-8 flex items-center justify-center bg-white/5 border border-white/10 rounded-full group hover:bg-white/20 transition-colors"><svg className="w-4 h-4 text-white/50 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 19l-7-7 7-7"/></svg></button>
@@ -371,8 +371,8 @@ const Home = () => {
 
       <section className="max-w-7xl mx-auto px-6 mt-10 lazy-section">
         <div className="flex flex-col mb-6 px-2">
-          <h2 className="text-lg font-black text-white uppercase tracking-tight">Top 10 Anime</h2>
-          <span className="text-[10px] text-white/40 mt-1 font-bold uppercase tracking-widest">Anime populer sepanjang waktu</span>
+          <h2 className="text-lg font-black text-white uppercase tracking-tight">Top 10 Animes</h2>
+          <span className="text-[10px] text-white/40 mt-1 font-bold uppercase tracking-widest">Animes les plus populaires de tous les temps</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-2">
           {isLoading ? [...Array(10)].map((_, i) => <div key={i} className="h-24 bg-[#16161a] rounded-xl relative overflow-hidden"><Shimmer /></div>) :

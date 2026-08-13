@@ -144,7 +144,7 @@ const Welcome = () => {
             <div className="w-full max-w-lg relative">
               <div className="flex items-center bg-white rounded-full px-5 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all">
                 <svg className="w-5 h-5 text-gray-500 mr-3 shrink-0" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                <input type="text" className="w-full bg-transparent text-black text-sm outline-none font-bold placeholder-gray-500" placeholder="Ketik anime yang ingin kamu tonton..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && navigate(searchQuery ? `/explore?q=${searchQuery}` : '/home')} />
+                <input type="text" className="w-full bg-transparent text-black text-sm outline-none font-bold placeholder-gray-500" placeholder="Tape le nom de l'anime que tu veux regarder..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && navigate(searchQuery ? `/explore?q=${searchQuery}` : '/home')} />
                 <button onClick={() => navigate('/explore')} className="text-gray-600 font-black text-[10px] ml-2 border-l border-gray-300 pl-3 hover:text-black uppercase tracking-widest flex items-center gap-1 shrink-0 transition-colors">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
                   FILTER
@@ -166,19 +166,19 @@ const Welcome = () => {
             </div>
           </div>
           <div className="absolute bottom-10 left-0 right-0 flex justify-center">
-             <button onClick={() => navigate('/home')} className="bg-[#F6CF80] hover:bg-[#ebd59b] text-black font-extrabold px-14 py-3.5 rounded-full active:scale-95 transition-all shadow-[0_10px_30px_rgba(246,207,128,0.3)] tracking-widest text-xs uppercase">Masuk Beranda</button>
+             <button onClick={() => navigate('/home')} className="bg-[#F6CF80] hover:bg-[#ebd59b] text-black font-extrabold px-14 py-3.5 rounded-full active:scale-95 transition-all shadow-[0_10px_30px_rgba(246,207,128,0.3)] tracking-widest text-xs uppercase">Accéder à l'accueil</button>
           </div>
         </div>
 
         <div className="mt-16 mb-24 flex flex-col items-center text-center px-6">
           <img src="/img/kaguya.webp" alt="Kaguya" width="120" height="120" loading="lazy" decoding="async" className="w-28 md:w-32 object-contain mb-6 drop-shadow-2xl" />
           <h2 className="text-3xl md:text-5xl font-[900] tracking-tighter mb-5">Nefu<span className="text-[#F6CF80]">Soft</span></h2>
-          <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed max-w-2xl">NefuSoft provides zero-ad free streaming access to thousands of anime titles. Enjoy streaming anime with high quality subtitles from 360p to 1080p, completely free of charge!</p>
+          <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed max-w-2xl">NefuSoft offre un accès de streaming gratuit et sans publicité à des milliers de titres d'anime. Profite du streaming d'anime avec des sous-titres de haute qualité, de 360p à 1080p, entièrement gratuit !</p>
         </div>
       </main>
 
       <footer className="w-full py-8 px-6 border-t border-white/5 flex flex-col items-center">
-        <p className="text-[10px] md:text-[11px] text-white/50 font-bold leading-relaxed max-w-2xl text-center tracking-wide">NefuSoft adalah platform streaming anime pihak ketiga. Kami tidak mengunggah atau menyimpan file video apa pun di server kami. Semua konten disediakan oleh pihak ketiga yang tidak terafiliasi dengan kami.</p>
+        <p className="text-[10px] md:text-[11px] text-white/50 font-bold leading-relaxed max-w-2xl text-center tracking-wide">NefuSoft est une plateforme de streaming d'anime tierce. Nous ne téléversons ni ne stockons aucun fichier vidéo sur nos serveurs. Tout le contenu est fourni par des tiers non affiliés à nous.</p>
       </footer>
     </div>
   );

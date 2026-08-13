@@ -180,7 +180,7 @@ const Explore = () => {
       <div className="pt-24 max-w-7xl mx-auto px-6">
         {!query && genres.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-white font-black uppercase mb-4 text-sm tracking-wide">Filter Genre</h2>
+            <h2 className="text-white font-black uppercase mb-4 text-sm tracking-wide">Filtrer par genre</h2>
             <div className="flex overflow-x-auto gap-2 pb-2 no-scrollbar">
               {genres.map(g => (
                 <button key={g.id} onClick={() => toggleGenre(g.id)} className={`px-4 py-2 text-[10px] whitespace-nowrap font-bold rounded-xl transition-colors ${selectedGenres.includes(g.id) ? 'bg-[#F6CF80] text-black shadow-lg shadow-[#F6CF80]/20' : 'bg-white/5 border border-white/10 text-white/50 hover:bg-white/10 hover:text-white'}`}>
@@ -193,7 +193,7 @@ const Explore = () => {
         
         {query && (
           <div className="mb-8">
-            <h2 className="text-white/40 text-xs font-bold uppercase tracking-widest">Menampilkan hasil untuk:</h2>
+            <h2 className="text-white/40 text-xs font-bold uppercase tracking-widest">Résultats pour :</h2>
             <span className="text-[#F6CF80] text-2xl font-black uppercase tracking-tighter line-clamp-1">"{query}"</span>
           </div>
         )}
@@ -207,7 +207,7 @@ const Explore = () => {
         {!isLoading && results.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <svg className="w-16 h-16 text-white/5 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <p className="text-white/40 font-bold text-sm tracking-wide">Tidak ditemukan</p>
+            <p className="text-white/40 font-bold text-sm tracking-wide">Aucun résultat trouvé</p>
           </div>
         )}
 

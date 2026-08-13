@@ -7,13 +7,13 @@ const Footer = () => (
         <img src="/img/nefusoft.webp" alt="NefuSoft" className="w-20 md:w-28 aspect-square object-contain mb-4" />
       </div>
       <div className="text-center md:text-left">
-        <h4 className="text-white font-black mb-3 text-sm tracking-wide">Tentang NefuSoft</h4>
+        <h4 className="text-white font-black mb-3 text-sm tracking-wide">À propos de NefuSoft</h4>
         <p className="text-[10px] md:text-xs text-white/50 leading-relaxed font-medium">
-          NefuSoft adalah platform streaming anime pihak ketiga. Kami tidak mengunggah atau menyimpan file video apa pun di server kami. Semua konten disediakan oleh pihak ketiga yang tidak terafiliasi dengan kami.
+          NefuSoft est une plateforme de streaming d'anime tierce. Nous ne téléversons ni ne stockons aucun fichier vidéo sur nos serveurs. Tout le contenu est fourni par des tiers non affiliés à nous.
         </p>
       </div>
       <div className="text-center md:text-left flex flex-col items-center md:items-start">
-         <h4 className="text-white font-black mb-5 text-sm tracking-wide">Terima Kasih Kepada</h4>
+         <h4 className="text-white font-black mb-5 text-sm tracking-wide">Remerciements à</h4>
          <div className="flex flex-col gap-6 w-full">
             <div className="flex flex-wrap justify-center md:justify-start items-center gap-6">
               {['animein', 'kuramanime', 'oploverz'].map(p => (

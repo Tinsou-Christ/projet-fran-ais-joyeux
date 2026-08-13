@@ -84,8 +84,8 @@ const Ongoing = () => {
 
       <div className="pt-24 max-w-7xl mx-auto px-6">
         <div className="mb-8 flex flex-col">
-          <h2 className="text-white font-black uppercase text-lg tracking-tight">Ongoing Anime</h2>
-          <span className="text-[10px] text-white/50 font-bold uppercase tracking-widest mt-1">Anime yang sedang tayang saat ini</span>
+          <h2 className="text-white font-black uppercase text-lg tracking-tight">Animes en cours</h2>
+          <span className="text-[10px] text-white/50 font-bold uppercase tracking-widest mt-1">Animes actuellement en diffusion</span>
         </div>
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(95px,1fr))] gap-3 px-2 mb-10">
