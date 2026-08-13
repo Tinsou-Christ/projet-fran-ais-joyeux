@@ -10,33 +10,189 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DonghuaRouteImport } from './routes/donghua'
+import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as MangaRouteImport } from './routes/manga'
+import { Route as OngoingRouteImport } from './routes/ongoing'
+import { Route as ScheduleRouteImport } from './routes/schedule'
+import { Route as AnimeSlugRouteImport } from './routes/anime.$slug'
+import { Route as AnimeSlugIndexRouteImport } from './routes/anime.$slug.index'
+import { Route as AnimeSlugEpisodeRouteImport } from './routes/anime.$slug.$episode'
+import { Route as ApiPublicV1SplatRouteImport } from './routes/api/public/v1/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DonghuaRoute = DonghuaRouteImport.update({
+  id: '/donghua',
+  path: '/donghua',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MangaRoute = MangaRouteImport.update({
+  id: '/manga',
+  path: '/manga',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OngoingRoute = OngoingRouteImport.update({
+  id: '/ongoing',
+  path: '/ongoing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScheduleRoute = ScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimeSlugRoute = AnimeSlugRouteImport.update({
+  id: '/anime/$slug',
+  path: '/anime/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimeSlugIndexRoute = AnimeSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AnimeSlugRoute,
+} as any)
+const AnimeSlugEpisodeRoute = AnimeSlugEpisodeRouteImport.update({
+  id: '/$episode',
+  path: '/$episode',
+  getParentRoute: () => AnimeSlugRoute,
+} as any)
+const ApiPublicV1SplatRoute = ApiPublicV1SplatRouteImport.update({
+  id: '/api/public/v1/$',
+  path: '/api/public/v1/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/donghua': typeof DonghuaRoute
+  '/explore': typeof ExploreRoute
+  '/favorites': typeof FavoritesRoute
+  '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/manga': typeof MangaRoute
+  '/ongoing': typeof OngoingRoute
+  '/schedule': typeof ScheduleRoute
+  '/anime/$slug': typeof AnimeSlugRouteWithChildren
+  '/anime/$slug/$episode': typeof AnimeSlugEpisodeRoute
+  '/anime/$slug/': typeof AnimeSlugIndexRoute
+  '/api/public/v1/$': typeof ApiPublicV1SplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/donghua': typeof DonghuaRoute
+  '/explore': typeof ExploreRoute
+  '/favorites': typeof FavoritesRoute
+  '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/manga': typeof MangaRoute
+  '/ongoing': typeof OngoingRoute
+  '/schedule': typeof ScheduleRoute
+  '/anime/$slug/$episode': typeof AnimeSlugEpisodeRoute
+  '/anime/$slug': typeof AnimeSlugIndexRoute
+  '/api/public/v1/$': typeof ApiPublicV1SplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/donghua': typeof DonghuaRoute
+  '/explore': typeof ExploreRoute
+  '/favorites': typeof FavoritesRoute
+  '/history': typeof HistoryRoute
+  '/home': typeof HomeRoute
+  '/manga': typeof MangaRoute
+  '/ongoing': typeof OngoingRoute
+  '/schedule': typeof ScheduleRoute
+  '/anime/$slug': typeof AnimeSlugRouteWithChildren
+  '/anime/$slug/$episode': typeof AnimeSlugEpisodeRoute
+  '/anime/$slug/': typeof AnimeSlugIndexRoute
+  '/api/public/v1/$': typeof ApiPublicV1SplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/donghua'
+    | '/explore'
+    | '/favorites'
+    | '/history'
+    | '/home'
+    | '/manga'
+    | '/ongoing'
+    | '/schedule'
+    | '/anime/$slug'
+    | '/anime/$slug/$episode'
+    | '/anime/$slug/'
+    | '/api/public/v1/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/donghua'
+    | '/explore'
+    | '/favorites'
+    | '/history'
+    | '/home'
+    | '/manga'
+    | '/ongoing'
+    | '/schedule'
+    | '/anime/$slug/$episode'
+    | '/anime/$slug'
+    | '/api/public/v1/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/donghua'
+    | '/explore'
+    | '/favorites'
+    | '/history'
+    | '/home'
+    | '/manga'
+    | '/ongoing'
+    | '/schedule'
+    | '/anime/$slug'
+    | '/anime/$slug/$episode'
+    | '/anime/$slug/'
+    | '/api/public/v1/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DonghuaRoute: typeof DonghuaRoute
+  ExploreRoute: typeof ExploreRoute
+  FavoritesRoute: typeof FavoritesRoute
+  HistoryRoute: typeof HistoryRoute
+  HomeRoute: typeof HomeRoute
+  MangaRoute: typeof MangaRoute
+  OngoingRoute: typeof OngoingRoute
+  ScheduleRoute: typeof ScheduleRoute
+  AnimeSlugRoute: typeof AnimeSlugRouteWithChildren
+  ApiPublicV1SplatRoute: typeof ApiPublicV1SplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +204,119 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/donghua': {
+      id: '/donghua'
+      path: '/donghua'
+      fullPath: '/donghua'
+      preLoaderRoute: typeof DonghuaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manga': {
+      id: '/manga'
+      path: '/manga'
+      fullPath: '/manga'
+      preLoaderRoute: typeof MangaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ongoing': {
+      id: '/ongoing'
+      path: '/ongoing'
+      fullPath: '/ongoing'
+      preLoaderRoute: typeof OngoingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schedule': {
+      id: '/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof ScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anime/$slug': {
+      id: '/anime/$slug'
+      path: '/anime/$slug'
+      fullPath: '/anime/$slug'
+      preLoaderRoute: typeof AnimeSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anime/$slug/': {
+      id: '/anime/$slug/'
+      path: '/'
+      fullPath: '/anime/$slug/'
+      preLoaderRoute: typeof AnimeSlugIndexRouteImport
+      parentRoute: typeof AnimeSlugRoute
+    }
+    '/anime/$slug/$episode': {
+      id: '/anime/$slug/$episode'
+      path: '/$episode'
+      fullPath: '/anime/$slug/$episode'
+      preLoaderRoute: typeof AnimeSlugEpisodeRouteImport
+      parentRoute: typeof AnimeSlugRoute
+    }
+    '/api/public/v1/$': {
+      id: '/api/public/v1/$'
+      path: '/api/public/v1/$'
+      fullPath: '/api/public/v1/$'
+      preLoaderRoute: typeof ApiPublicV1SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AnimeSlugRouteChildren {
+  AnimeSlugEpisodeRoute: typeof AnimeSlugEpisodeRoute
+  AnimeSlugIndexRoute: typeof AnimeSlugIndexRoute
+}
+
+const AnimeSlugRouteChildren: AnimeSlugRouteChildren = {
+  AnimeSlugEpisodeRoute: AnimeSlugEpisodeRoute,
+  AnimeSlugIndexRoute: AnimeSlugIndexRoute,
+}
+
+const AnimeSlugRouteWithChildren = AnimeSlugRoute._addFileChildren(
+  AnimeSlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DonghuaRoute: DonghuaRoute,
+  ExploreRoute: ExploreRoute,
+  FavoritesRoute: FavoritesRoute,
+  HistoryRoute: HistoryRoute,
+  HomeRoute: HomeRoute,
+  MangaRoute: MangaRoute,
+  OngoingRoute: OngoingRoute,
+  ScheduleRoute: ScheduleRoute,
+  AnimeSlugRoute: AnimeSlugRouteWithChildren,
+  ApiPublicV1SplatRoute: ApiPublicV1SplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
