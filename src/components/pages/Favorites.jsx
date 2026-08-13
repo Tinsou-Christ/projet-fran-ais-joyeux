@@ -31,14 +31,14 @@ const Favorites = () => {
 
   const handleRemoveFavorite = (animeId, e) => {
     e.stopPropagation();
-    if (window.confirm('Apakah Anda yakin ingin menghapus anime ini dari daftar favorit Anda?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet anime de votre liste de favoris ?')) {
       try {
         removeFavorite(animeId);
         setFavoritesList(prev => prev.filter(item => item.anime_id !== animeId));
-        showToast('Anime berhasil dihapus dari favorit');
+        showToast('Anime supprimé des favoris avec succès');
       } catch (err) {
         console.error(err);
-        showToast('Gagal menghapus favorit');
+        showToast('Échec de la suppression du favori');
       }
     }
   };
@@ -62,14 +62,14 @@ const Favorites = () => {
 
       <div className="pt-24 max-w-7xl mx-auto px-4 md:px-6">
         <div className="mb-8 flex flex-col">
-          <h2 className="text-white font-black uppercase text-lg">Daftar Favorit</h2>
-          <span className="text-[10px] text-white/50 font-bold">Koleksi anime favorit pilihan kamu</span>
+          <h2 className="text-white font-black uppercase text-lg">Liste des favoris</h2>
+          <span className="text-[10px] text-white/50 font-bold">Ta collection d'animes favoris</span>
         </div>
 
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <div className="w-12 h-12 border-4 border-t-[#F6CF80] border-white/5 rounded-full animate-spin mb-4"></div>
-            <p className="text-white/40 font-bold text-sm">memuat daftar favorit...</p>
+            <p className="text-white/40 font-bold text-sm">chargement de la liste des favoris...</p>
           </div>
         ) : favoritesList.length > 0 ? (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-4 md:gap-6 animate-[fadeIn_0.3s_ease-out]">
@@ -106,7 +106,7 @@ const Favorites = () => {
                   <button
                     onClick={(e) => handleRemoveFavorite(anime.anime_id, e)}
                     className="absolute top-2 right-2 w-8 h-8 bg-black/70 hover:bg-red-500 rounded-full flex items-center justify-center text-white/80 hover:text-white transition-all border border-white/10 shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100 z-20 cursor-pointer"
-                    title="Hapus dari favorit"
+                    title="Supprimer des favoris"
                   >
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
@@ -140,9 +140,9 @@ const Favorites = () => {
             <svg className="w-16 h-16 text-white/5 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
-            <p className="text-white/40 font-bold text-sm">Belum ada anime favorit</p>
+            <p className="text-white/40 font-bold text-sm">Aucun anime favori pour le moment</p>
             <p className="text-white/20 text-xs font-bold mt-2 max-w-sm leading-relaxed">
-              Daftar favorit Anda tersimpan dengan aman secara lokal di peramban (browser) ini. Klik tombol hati pada anime untuk menambahkannya ke sini!
+              Ta liste de favoris est enregistrée en toute sécurité localement dans ce navigateur. Clique sur le bouton cœur d'un anime pour l'ajouter ici !
             </p>
           </div>
         )}

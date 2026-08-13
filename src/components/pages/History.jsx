@@ -45,36 +45,36 @@ const History = () => {
     try {
       await deleteHistoryItem(animeId, episodeIndex);
       setHistoryList(prev => prev.filter(item => !(item.anime_id === animeId && item.episode_index === episodeIndex)));
-      showToast(`Episode ${episodeIndex} berhasil dihapus dari riwayat`);
+      showToast(`Épisode ${episodeIndex} supprimé de l'historique avec succès`);
     } catch (err) {
       console.error(err);
-      showToast('Gagal menghapus episode');
+      showToast('Échec de la suppression de l\'épisode');
     }
   };
 
   const handleDeleteAnimeGroup = async (animeId, e) => {
     e.stopPropagation();
-    if (window.confirm('Apakah Anda yakin ingin menghapus seluruh riwayat untuk anime ini?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer tout l\'historique de cet anime ?')) {
       try {
         await deleteHistoryItem(animeId);
         setHistoryList(prev => prev.filter(item => item.anime_id !== animeId));
-        showToast('Riwayat anime berhasil dihapus');
+        showToast('Historique de l\'anime supprimé avec succès');
       } catch (err) {
         console.error(err);
-        showToast('Gagal menghapus riwayat anime');
+        showToast('Échec de la suppression de l\'historique de l\'anime');
       }
     }
   };
 
   const handleClearAll = async () => {
-    if (window.confirm('Apakah Anda yakin ingin menghapus seluruh riwayat tontonan?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer tout l\'historique de visionnage ?')) {
       try {
         await clearAllHistory();
         setHistoryList([]);
-        showToast('Seluruh riwayat berhasil dibersihkan');
+        showToast('Tout l\'historique a été effacé avec succès');
       } catch (err) {
         console.error(err);
-        showToast('Gagal membersihkan seluruh riwayat');
+        showToast('Échec de la suppression de tout l\'historique');
       }
     }
   };
@@ -147,8 +147,8 @@ const History = () => {
       <div className="pt-24 max-w-7xl mx-auto px-4 md:px-6">
         <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-white font-black uppercase text-lg">Riwayat Nonton</h2>
-            <span className="text-[10px] text-white/50 font-bold">Lanjutkan anime yang sedang kamu tonton</span>
+            <h2 className="text-white font-black uppercase text-lg">Historique de visionnage</h2>
+            <span className="text-[10px] text-white/50 font-bold">Continue l'anime que tu es en train de regarder</span>
           </div>
 
           {!isLoading && historyList.length > 0 && (
@@ -159,7 +159,7 @@ const History = () => {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
-              Bersihkan Semua
+              Tout effacer
             </button>
           )}
         </div>
@@ -167,7 +167,7 @@ const History = () => {
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <div className="w-12 h-12 border-4 border-t-[#F6CF80] border-white/5 rounded-full animate-spin mb-4"></div>
-            <p className="text-white/40 font-bold text-sm">memuat riwayat tontonan...</p>
+            <p className="text-white/40 font-bold text-sm">chargement de l'historique de visionnage...</p>
           </div>
         ) : groupedHistory.length > 0 ? (
           <div className="flex flex-col gap-6">
@@ -193,7 +193,7 @@ const History = () => {
                         {group.anime_title}
                       </h3>
                       <p className="text-[10px] text-white/40 font-bold mt-1 uppercase tracking-wider">
-                        {group.episodes.length} Episode ditonton
+                        {group.episodes.length} épisode(s) regardé(s)
                       </p>
                     </div>
                   </div>
@@ -202,12 +202,12 @@ const History = () => {
                   <button
                     onClick={(e) => handleDeleteAnimeGroup(group.anime_id, e)}
                     className="text-white/40 hover:text-red-500 hover:bg-red-500/10 px-3 py-1.5 rounded-lg transition-all cursor-pointer border border-transparent hover:border-red-500/10 flex items-center gap-1.5 text-xs font-bold"
-                    title="Hapus anime ini dari riwayat"
+                    title="Supprimer cet anime de l'historique"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
-                    <span className="hidden sm:inline">Hapus Anime</span>
+                    <span className="hidden sm:inline">Supprimer l'anime</span>
                   </button>
                 </div>
 
@@ -234,7 +234,7 @@ const History = () => {
                           <button
                             onClick={(e) => handleDeleteEpisode(ep.anime_id, ep.episode_index, e)}
                             className="absolute top-1 right-1 w-6 h-6 bg-black/70 hover:bg-red-500 rounded-full flex items-center justify-center text-white/60 hover:text-white transition-all border border-white/10 opacity-0 group-hover/ep:opacity-100"
-                            title="Hapus episode ini"
+                            title="Supprimer cet épisode"
                           >
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -253,7 +253,7 @@ const History = () => {
                         {/* Progress info */}
                         <div className="px-1">
                           <div className="flex justify-between items-center text-[10px] text-white/50 font-bold mb-1.5">
-                            <span>Durasi: {formatTime(ep.duration)}</span>
+                            <span>Durée : {formatTime(ep.duration)}</span>
                             <span className="text-[#F6CF80]">{Math.round(progressPercentage)}%</span>
                           </div>
 
@@ -277,9 +277,9 @@ const History = () => {
             <svg className="w-16 h-16 text-white/5 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <p className="text-white/40 font-bold text-sm">Belum ada riwayat tontonan</p>
+            <p className="text-white/40 font-bold text-sm">Aucun historique de visionnage pour le moment</p>
             <p className="text-white/20 text-xs font-bold mt-2">
-              Riwayat tontonan Anda tersimpan dengan aman secara lokal di peramban (browser) ini.
+              Ton historique de visionnage est enregistré en toute sécurité localement dans ce navigateur.
             </p>
           </div>
         )}
