@@ -4,6 +4,7 @@ import { supabase } from '../utils/supabaseClient';
 import { isFavorite, saveFavorite, removeFavorite } from '../utils/favoritesManager';
 import { getHistory } from '../utils/historyManager';
 import { getProfile, updateProfile, syncProfileLevel, calculateLevel } from '../utils/profileManager';
+import { FranimeLink } from './FranimeAccess';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -367,6 +368,7 @@ const Navbar = () => {
           </div>
           
           <div className="flex items-center justify-end flex-1 gap-3 z-10">
+            <FranimeLink compact />
             {currentAnime && (
               <button
                 onClick={handleToggleFavoriteNavbar}

@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep external source fallback UI in the shared FranimeAccess component; never substitute unverified catalog or playback endpoints.
