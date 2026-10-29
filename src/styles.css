@@ -19,6 +19,10 @@
  */
 
 @theme inline {
+  --color-stream-accent: oklch(0.866 0.108 85);
+  --color-stream-accent-foreground: oklch(0.15 0.005 285);
+  --color-stream-foreground: oklch(0.985 0 0);
+  --color-stream-muted: oklch(0.74 0.006 285);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

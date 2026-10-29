@@ -4,6 +4,7 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { saveHistoryItem, getHistory } from '../../utils/historyManager';
 import { isFavorite, saveFavorite, removeFavorite } from '../../utils/favoritesManager';
+import FranimeAccess from '../FranimeAccess';
 
 const ShimmerEffect = () => (
   <div className="absolute top-0 bottom-0 left-0 w-[150%] animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent z-10" style={{ transform: 'translate3d(-100%, 0, 0) skewX(-20deg)' }} />
@@ -272,6 +273,8 @@ const Watch = () => {
     setSkipMode('intro');
     const fetchEpisode = async () => {
       setIsEpLoading(true);
+      setServers([]);
+      setSelectedServer(null);
       setIsVideoReady(false);
       setHasStarted(false);
       setIsPlaying(false);
@@ -748,26 +751,10 @@ const Watch = () => {
         {isLoading ? (
           <WatchSkeleton />
         ) : !anime ? (
-          <div className="text-center py-12 px-6 bg-[#16161a]/60 border border-white/5 rounded-3xl backdrop-blur-xl flex flex-col items-center justify-center gap-4 max-w-md mx-auto shadow-2xl my-10 animate-[fadeIn_0.3s_ease-out]">
-            <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-2xl text-red-400">
-              ⚠️
-            </div>
-            <div className="text-center">
-              <h3 className="text-white font-black text-sm tracking-wide">Échec du chargement des détails de l'anime</h3>
-              <p className="text-white/50 text-[11px] font-bold mt-1 leading-relaxed">
-                Un problème de connexion, une limitation de débit (403/429) ou un serveur occupé s'est produit. Veuillez réessayer.
-              </p>
-            </div>
-            <button
-              onClick={() => setRetryTrigger(prev => prev + 1)}
-              className="w-full h-10 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded-xl font-black tracking-wider text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_4px_12px_rgba(246,207,128,0.2)] active:scale-95"
-            >
-              🔄 Réessayer
-            </button>
-          </div>
+          <FranimeAccess />
         ) : (
           <>
-            <div className="bg-[#16161a] p-1.5 md:p-2 rounded-sm border border-white/5 mb-4 shadow-2xl relative">
+            {!isEpLoading && !selectedServer ? <FranimeAccess /> : <div className="bg-[#16161a] p-1.5 md:p-2 rounded-sm border border-white/5 mb-4 shadow-2xl relative">
               <div 
                 ref={playerContainerRef} 
                 className="relative w-full aspect-video bg-black overflow-hidden flex flex-col group select-none"
@@ -1018,7 +1005,7 @@ const Watch = () => {
                   </>
                 )}
               </div>
-            </div>
+            </div>}
 
             {servers.length > 0 && (
               <div className="bg-[#16161a] border border-white/5 rounded-xl p-4 md:p-5 shadow-2xl text-left mb-4">
