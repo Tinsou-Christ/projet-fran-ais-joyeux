@@ -218,7 +218,7 @@ const Home = () => {
 
       <Navbar />
       <header className="relative w-full aspect-[16/10] md:aspect-video min-h-[300px] md:max-h-[550px] overflow-hidden bg-[#0f0f12]">
-        {isLoading ? <HeroSkeleton /> : carouselItems.length === 0 ? <FranimeAccess /> : (
+        {isLoading ? <HeroSkeleton /> : carouselItems.length === 0 ? <div className="flex h-full items-center justify-center pt-20"><FranimeAccess /></div> : (
           <div className={`flex h-full ${isTransitioning ? 'transition-transform duration-700' : ''}`} style={{ transform: `translate3d(-${heroIndex * 100}%, 0, 0)` }}>
             {carouselItems.map((a, i) => (
               <div key={i} className="min-w-full h-full relative">
